@@ -1,0 +1,98 @@
+\xchapter{Introdu\c{c}\~{a}o}{}
+%\xchapter{Introdução}{}
+
+\section{Introdução}
+
+% Apresentar os conceitos chaves
+    % Refinamento
+    % Reparo
+    % Algoritmo de reparo
+    % Jogo de refinamento
+% Apresentar os contextos do trabalho
+% Aprsentar o problema
+
+Em um modelo de processo iterativo e incremental a especificação é desenvolvida junto com o software, os clientes identificam em um esboço, as funções a serem fornecidas pelo sistema. Eles identificam quais são as funções mais e menos importantes para eles \cite{sommerville2011engenharia}.
+Este tipo desenvolvimento torna-se eficaz na medida em que o cliente ainda não conhece todos os requisitos desejáveis do sistema, o que permite que mudanças possam ocorrer ao longo do processo e que essas mudanças não afete todo o sistema.
+
+O aspecto de desenvolvimento iterativo e incremental proposto pela engenharia de software se encorpora perfeitamente com as técnicas de modelagem formais de software, como por exemplo o \textit{model checking}.
+
+Model Checking consiste na verificação de algumas propriedades do modelo de um sistema \cite{Berard:2010:SSV:1965314}. Model checking é uma técnica automática para verificação de sistemas concorrentes de estados finitos. Essa técnica tem uma série de vantagens sobre as abordagens tradicionais que são baseadas em simulação, testes e análise dedutiva\cite{clarke1999model}.
+
+No processo de modelagem de sistemas são definidos 3 etapas principais:
+\begin{itemize}
+\item \textbf{Modelagem}: É a etapa que requer o uso de abstrações para eliminação de detalhes irrelevantes ou que não são importantes no sistema;
+
+\item \textbf{Especificação}: É uma propriedade de estado de um design que deve ser satisfeita. É impossível determinar se uma dada especificação cobre todas as propriedades que o sistema deve satisfazer; %rever isso aqui%
+
+\item \textbf{Verificação}: Etapa que verifica se o sistema desenvolvido corresponde a especificação.
+\end{itemize}
+
+Em determinados contextos é de suma importância conhecer determinados comportamentos do sistema, para isso existem alguns métodos que são capazes de representar informações parciais de sistemas, tais como:
+
+\begin{enumerate}
+\item Modal Transition System (MTS);
+\item Disjunctive Modal Transition System (DMTS);
+\item Parametric Modal Transition System (PMTS);
+\item Kripke Modal Transition System (KMTS);
+\item etc.
+\end{enumerate}
+
+\cite{machado2017uso} diz que os autores utilizam \textit{Modal Transition System} (MTS) para representar comportamento parcial de sistemas e que existem outros modelos que extendem o MTS, aumentando sua expressividade, mas com a mesma finalidade, como \textit{Disjunctive Modal Transition System} (DMTS) ou o \textit{Parametric Modal Transition System} (PMTS).
+
+%--- Reescrever esse paragrafo ---%
+Na modelagem formal de um software é definido a sua especificação, com a análise do comportamento parcial deste software são realizados verificações de algumas propriedades, se o modelo a ser analisado manter as propriedades do modelo anteriormente analisado, dizemos que há um refinamento \cite{machado2017uso}.
+
+Se não existir uma relação de refinamento entre os modelos, é necessário realizar o \textit{reparo}, para que este modelo que está sendo analisado preserve as propriedades já definidas na especificação.
+
+O reparo de um modelo é realizado automaticamente por meio de um \textit{algoritmo de reparo}, desenvolvido por \cite{machado2017uso}, ele utiliza uma técnica chamada de \textit{jogo de refinamento}, para descobrir se há uma relação de refinamento entre os modelos. Não havendo tal relação, é feito o reparo deste refinamento. O reparo de um modelo é uma alteração realizada nele próprio, a modo que o mesmo venha a se tornar um refinamento da especificação e que atenda a todas as propriedades já definidas.
+
+O jogo de refinamento nada mais é que um jogo jogado em partidas entre dois jogadores obedecendo a algumas regras e definindo um vencedor. O vencedor do jogo é quem determina se há ou não uma relação de refinamento entre os modelos. Caso não haja um refinamento entre os modelos o algoritmo de reparo aplica algumas mudanças no mesmo para corrigir e tentar definir uma relação de refinamento entre eles.
+
+Projetistas de software, geralmente, representam os softwares através de linguagens informais ou semi-formais como UML. Modelos comportamentais de interação se limitam, muitas vezes, a diagrama de sequência \cite{uchitel2003synthesis}.
+
+% Acho que poderia falar aqui nesse paragrafo como é a modelagem formal de um software %
+
+Neste trabalho será abordado apenas o método de comportamento parcial KMTS, por ser uma retratação da dissertação de mestrado defendida por Efraim Machado, onde esse foi modelo explorado, já que o mesmo permite mostrar com mais clareza e mais explicitamente indefinições no sistema.
+
+
+% - falar que o resultado é bom
+% - resultado se sobressai aos demais da literatura (colocar numeros, falar sobre speedup, tamanho das bases de dados, etc)
+% - comparar todos os experimentos e dizer qual foi melhor
+% - concluir falando sobre o potencial de se resolver um problema muito maior
+
+\section{Motivação}
+
+Dado o problema de reparo de refinamento e, visto que o algoritmo "x" possui tais problemas, a motivação desse trabalho se dá na proposta de melhorá-lo, para que se obtenha um algoritmo mais eficiente.
+
+%O Brasil dispõe de um grande acervo de bases de dados, tal como citado na introdução. Muitas vezes, estas possuem milhares de registros e são objetos de inúmeros estudos.
+
+% - o brasil dispoe de um grande acervo de bases de dados e que sao objeto de grandes estudos. uma fonte inesgotavel de conhecimento
+% - gpu é boa para problemas que nao tem depedencia dos dados
+% - arquitetura da gpu é ideal para esse tipo de problemas: SIMD
+
+\section{Objetivos}
+% Explicar quais técnicas vão ser usadas, porque utilizar ela e não outra, explicitar também qual algoritmo será melhorado e porquê será esse o algoritmo a ser melhorado %
+
+O principal objetivo deste trabalho é melhorar um algoritmo de reparo de refinamento desenvolvido por \cite{machado2017uso} na sua dissertação de mestrado.
+
+%O principal objetivo deste trabalho foi desenvolver otimizações paralelas da ferramenta \textit{AtyImo}, utilizada para realizar correlação probabilística de dados, para a etapa de comparação de registros. Estas otimizações devem ser capazes de lidar com bases de dados no contexto de \textit{big data}.
+% O principal objetivo deste trabalho foi desenvolver uma ferramenta com otimizações paralelas para auxiliar no processo de correlação probabilística de dados.
+
+Os objetivos específicos do projeto foram:
+
+\begin{enumerate}
+\item Estudar o que é refinamento;
+\item Estudar o que é reparo de refinamento;
+\item Conhecer o algoritmo de reparo de refinamento;
+\item Conhecer os problemas do algoritmo de reparo de refinamento;
+\item Analisar a complexidade do algoritmo de reparo de refinamento;
+\item Analisar onde o algoritmo pode ser melhorado;
+\item Analisar quais técnicas podem ser aplicadas para melhoria do algoritmo;
+\item Melhorar o algoritmo;
+\end{enumerate}
+
+\section{Organização do Trabalho}
+
+Este trabalho está estruturado da seguinte forma: No capítulo 2 abordaremos os principais conceitos sobre métodos de comportamento parcial de software; falaremos também sobre o algoritmo de reparo de refinamento e o seu problema, no capítulo 3; já no capítulo 4 iremos mostrar, se possível, uma solução para melhora de tal algoritmo apresentado no capítulo anterior, tal como a prova de sua complexidade; e então concluiremos com os resultados obtidos.
+
+%No próximo capítulo serão apresentados os conceitos sobre modelos de verificação de software, pareamento de registros e demais conteúdos importantes para o entendimento do trabalho. Um levantamento do estado da arte sobre ferramentas de correlação de dados, determinística e probabilística, bem como de técnicas de computação heterogênea para integração de dados serão apresentados no Capítulo 3. Uma breve descrição sobre a ferramenta inspiradora deste trabalho, o \textit{AtyImo}, bem como uma descrição detalhada do processo de desenvolvimento das otimizações paralelas propostas será mostrada no Capítulo 4. O Capítulo 5 exibirá os resultados obtidos e suas respectivas discussões. A conclusão e direcionamento para trabalhos futuros estão no Capítulo 6.%
