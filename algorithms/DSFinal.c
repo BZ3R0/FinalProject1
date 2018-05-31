@@ -60,7 +60,6 @@ int main()
     {
       printf("%s\n", DSFinal[k]);
     }
-    //cout << DSFinal << "\n";
 
     return 0;
 }
