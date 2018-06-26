@@ -1,44 +1,86 @@
-//Entrada: KMTS
-//Saida: DSExtendido
-#include <stdio.h>
-#include <string.h>
+// CPP program to print all paths of source to
+// destination in given graph
+#include <bits/stdc++.h>
+using namespace std;
 
-int DSExtendido(v)
+// utility function for printing
+// the found path in graph
+void printpath(vector<int>& path)
 {
-  DSExtendido = [];
-  ConjuntoDS = [];
-
-  for adj[v]
-    a.rpre = v.p
-    a.rpos = adj[v].p
-    DSExtendido += a
-    DSExtendido(adj[v])
-
-  ConjuntoDS += DSExtendido
-
-  return ConjuntoDS
+	int size = path.size();
+	for (int i = 0; i < size; i++)
+		cout << path[i] << " ";
+	cout << endl;
 }
 
-//L[i] é um DS
-//T é um conjunto de DSs
-int DSEstendido(gr G, ori v, T){
-  for v in G
-    v.add = 0
+// utility function to check if current
+// vertex is already present in path
+int isNotVisited(int x, vector<int>& path)
+{
+	int size = path.size();
+	for (int i = 0; i < size; i++)
+		if (path[i] == x)
+			return 0;
+	return 1;
+}
 
-  L = vazio
+// utility function for finding paths in graph
+// from source to destination
+void findpaths(vector<vector<int> >&g, int src,
+								int dst, int v)
+{
+	// create a queue which stores
+	// the paths
+	queue<vector<int> > q;
 
-  for v in G
-    for u in adj[v]
-      if u not in L
-        u.add = 1
-        L += u
-        v = u
-      else if u.add in L == 1
-        u.add = 2
-        L[i] += u
-        v = u
+	// path vector to store the current path
+	vector<int> path;
+	path.push_back(src);
+	q.push(path);
+	while (!q.empty()) {
+		path = q.front();
+		q.pop();
+		int last = path[path.size() - 1];
 
-  L[i] is not in T
-    T += L[i]
-    DSEstendido(gr G, ori v, T)
+		// if last vertex is the desired destination
+		// then print the path
+		if (last == dst)
+			printpath(path);
+
+		// traverse to all the nodes connected to
+		// current vertex and push new path to queue
+		for (int i = 0; i < g[last].size(); i++) {
+			if (isNotVisited(g[last][i], path)) {
+				vector<int> newpath(path);
+				newpath.push_back(g[last][i]);
+				q.push(newpath);
+			}
+		}
+	}
+}
+
+// driver program
+int main()
+{
+	vector<vector<int> > g;
+	// number of vertices
+	int v = 4;
+	g.resize(4);
+
+	// construct a graph
+	g[0].push_back(3);
+	g[0].push_back(1);
+	g[0].push_back(2);
+	g[1].push_back(3);
+	g[2].push_back(0);
+	g[2].push_back(1);
+
+	int src = 2, dst = 3;
+	cout << "path from src " << src
+		<< " to dst " << dst << " are \n";
+
+	// function for finding the paths
+	findpaths(g, src, dst, v);
+
+	return 0;
 }
